@@ -6,10 +6,20 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import "leaflet/dist/leaflet.css";
-import { render } from "@testing-library/react";
+import useSwr from "swr";
+
+const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
 const Map = () => {
-  //
+  const url =
+    "https://data.police.uk/api/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2022-01";
+  const { data, error } = useSwr(url, { fetcher });
+  const crimes = data && !error ? data.slice(0, 2000) : [];
+
+  //   if (error) return "An error has occurred.";
+  //   if (!data) return "Loading...";
+
+  // Custom marker icon markup
   const markerIconMarkup = renderToStaticMarkup(
     <FontAwesomeIcon icon={faLocationDot} />
   );
@@ -38,15 +48,29 @@ const Map = () => {
   ];
 
   return (
-    <MapContainer center={[48.8566, 2.3522]} zoom={13}>
+    <MapContainer center={[52.6376, -1.13517]} zoom={13}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <MarkerClusterGroup chunkedLoading>
-        {markers.map((marker, index) => (
+        {/* {markers.map((marker, index) => (
           <Marker key={index} position={marker.geocode} icon={markerIcon}>
             <Popup>{marker.popUp}</Popup>
+          </Marker>
+        ))} */}
+        {crimes.map((crime, index) => (
+          <Marker
+            key={index}
+            position={[crime.location.latitude, crime.location.longitude]}
+            icon={markerIcon}
+          >
+            <Popup>
+              <div>
+                <div>{crime.category}</div>
+                <div>{crime.month}</div>
+              </div>
+            </Popup>
           </Marker>
         ))}
       </MarkerClusterGroup>
