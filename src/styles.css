@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100vh;
+}
+
+/* Leaflet container size */
+.leaflet-container {
+  height: 100vh;
+}
+
+.marker-icon svg {
+  height: 40px !important;
+  width: 40px !important;
+  color: #d90368;
+}
