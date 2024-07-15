@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-leaflet-test/static/css/main.7af9b700.css",
+    "main.js": "/react-leaflet-test/static/js/main.3bdfe906.js",
+    "static/js/453.13e06adf.chunk.js": "/react-leaflet-test/static/js/453.13e06adf.chunk.js",
+    "index.html": "/react-leaflet-test/index.html",
+    "main.7af9b700.css.map": "/react-leaflet-test/static/css/main.7af9b700.css.map",
+    "main.3bdfe906.js.map": "/react-leaflet-test/static/js/main.3bdfe906.js.map",
+    "453.13e06adf.chunk.js.map": "/react-leaflet-test/static/js/453.13e06adf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7af9b700.css",
+    "static/js/main.3bdfe906.js"
+  ]
+}
